@@ -1,3 +1,4 @@
 geneticalgorithm/
 *.pyc
 .vscode/
+.ipynb_checkpoints/
