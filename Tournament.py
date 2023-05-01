@@ -1,13 +1,14 @@
 import random
 import numpy
 from Population import Population
+from Fitness import Fitness
 
 
 class Tournament:
-    def __init__(self, selection, performance, population):
+    def __init__(self, selection, fitness, population):
         self.population = population.data
         self.selection = selection
-        self.performance = performance
+        self.performance = fitness.performance
         self = self.compete()
 
     @property
