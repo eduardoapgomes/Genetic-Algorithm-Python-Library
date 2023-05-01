@@ -1,4 +1,5 @@
 import random
+from Population import Population
 
 
 class Mutation:
@@ -12,15 +13,39 @@ class Mutation:
         new_population = []
         for individual in self.population:
             self = self.random_mutant()
-            # self.mutation_list
             if self.any_mutation():
-                # o que acontece quando mutation list nao existe ou é vazio?
-                mutant = self.bitflip(individual, self.mutation_list)
-                new_population.append(mutant)
+                self.mutant = individual
+                self.individuals_list = self.mutant
                 del self.mutation_list
             else:
-                new_population.append(individual)
-        return new_population
+                self.individuals_list = individual
+        return Population(new_population)
+
+    @property
+    def mutant(self):
+        return self.__mutant
+
+    @mutant.setter
+    def mutant(self, individual):
+        self.__mutant = self.bitflip(individual, self.mutation_list)
+
+    @property
+    def individuals_list(self):
+        return self.__individuals_list
+
+    @individuals_list.setter
+    def individuals_list(self, individual):
+        if self.any_individual():
+            self.__individuals_list.append(individual)
+        else:
+            self.__individuals_list = [individual]
+        return self
+
+    def any_individual(self):
+        if hasattr(self, 'individuals_list'):
+            return True
+        else:
+            return False
 
     def any_mutation(self):
         if hasattr(self, 'mutation_list') == True:
@@ -29,7 +54,6 @@ class Mutation:
             return False
 
     def random_mutant(self):
-        # del self.mutation_list
         for bit_pointer in range(self.Nbits):
             if self.is_to_mutate_this_bit():
                 self.mutation_list = bit_pointer
