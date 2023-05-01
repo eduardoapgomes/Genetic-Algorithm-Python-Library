@@ -10,7 +10,6 @@ class Mutation:
 
     @property
     def new_population(self):
-        new_population = []
         for individual in self.population:
             self = self.random_mutant()
             if self.any_mutation():
@@ -19,7 +18,7 @@ class Mutation:
                 del self.mutation_list
             else:
                 self.individuals_list = individual
-        return Population(new_population)
+        return Population(self.individuals_list)
 
     @property
     def mutant(self):
