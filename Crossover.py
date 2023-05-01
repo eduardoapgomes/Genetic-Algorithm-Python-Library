@@ -7,15 +7,13 @@ import random
 
 class Crossover():
     def __init__(self, population, selection):
-        # super().__init__(population)
-        # Population
         self.population = population
         self.number_of_crossingovers = selection.number_of_crossovers()
 
     @property
     def new_population(self):
         self = self.reproduce()  # generate a new population of individuals
-        return self.__new_population
+        return Population(self.__new_population)
 
     @property
     def number_of_crossingovers(self):
