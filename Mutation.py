@@ -7,21 +7,23 @@ class Mutation:
         self.population = population.data
         self.Nbits = population.number_of_bits
 
+    @property
     def new_population(self):
         new_population = []
         for individual in self.population:
             self = self.random_mutant()
-            #self.mutation_list
+            # self.mutation_list
             if self.any_mutation():
-                mutant = self.bitflip(individual, self.mutation_list)# o que acontece quando mutation list nao existe ou é vazio?
+                # o que acontece quando mutation list nao existe ou é vazio?
+                mutant = self.bitflip(individual, self.mutation_list)
                 new_population.append(mutant)
                 del self.mutation_list
             else:
                 new_population.append(individual)
         return new_population
-        
+
     def any_mutation(self):
-        if hasattr(self,'mutation_list')==True:
+        if hasattr(self, 'mutation_list') == True:
             return True
         else:
             return False
@@ -45,15 +47,15 @@ class Mutation:
 
     @ mutation_list.setter
     def mutation_list(self, index):
-        if hasattr(self, 'mutation_list') == False:
-            self.__mutation_list = [index]
-        else:
+        if self.any_mutation():
             self.__mutation_list.append(index)
+        else:
+            self.__mutation_list = [index]
         return self
 
     @ mutation_list.deleter
     def mutation_list(self):
-        if hasattr(self, 'mutation_list') == True:
+        if self.any_mutation():
             del self.__mutation_list
         return self
 
