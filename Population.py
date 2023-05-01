@@ -18,6 +18,16 @@ class Population():
         self.size = population  # set number of individuals from population
         self.number_of_bits = population  # set the number of bits of the first individual
 
+    def __add__(self, population2):
+        """
+        Concatenates two instances of the Population class
+        Args:
+            Population(): a instance of the Population class
+        Examples:
+        new_population = Population(data1) + Population(data2)
+        """
+        return Population(self.data + population2.data)
+
     @property
     def data(self):
         """
