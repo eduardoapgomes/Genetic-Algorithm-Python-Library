@@ -1,5 +1,8 @@
+from abc import abstractmethod
 import numpy as np
 import random
+
+from Individuals import Individuals
 
 
 class Population():
@@ -27,6 +30,17 @@ class Population():
         new_population = Population(data1) + Population(data2)
         """
         return Population(self.data + population2.data)
+
+    @staticmethod
+    def generate(size, number_of_bits):
+        individuals_list = [Population.__random_individual(
+            number_of_bits) for k in range(size)]
+        return Population(individuals_list)
+
+    @staticmethod
+    def __random_individual(number_of_bits):
+        return ''.join([str(random.randint(0, 1))
+                        for k in range(number_of_bits)])
 
     @property
     def data(self):
