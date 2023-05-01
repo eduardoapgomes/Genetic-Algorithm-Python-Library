@@ -1,5 +1,6 @@
 import random
 import numpy
+from Population import Population
 
 
 class Tournament:
@@ -11,7 +12,9 @@ class Tournament:
 
     @property
     def new_population(self):
-        return random.sample(self.winner_list, self.selection.number_of_tournaments())
+        new_population = random.sample(
+            self.winner_list, self.selection.number_of_tournaments())
+        return Population(new_population)
 
     def compete(self):
         for participants in self.selection.tournament_sample():
