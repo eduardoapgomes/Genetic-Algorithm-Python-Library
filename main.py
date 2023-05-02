@@ -59,10 +59,9 @@ while iter < 1000:
     iter += 1
 
 plt.figure()
-plt.plot(fitness_history['iter'],fitness_history['fitness'],'-o')
+plt.plot(fitness_history['iter'], fitness_history['fitness'],'-o')
 plt.xlabel('Iter (k)')
 plt.ylabel('Fitness($x_{min}$)')
 plt.grid()
 plt.show()
 print('done')
-
